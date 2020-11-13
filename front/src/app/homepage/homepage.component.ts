@@ -22,6 +22,8 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData(this.postsLocation)
+    this.getData(this.categoriesLocation)
     
   }
 
