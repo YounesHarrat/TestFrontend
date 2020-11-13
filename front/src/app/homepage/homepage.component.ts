@@ -14,24 +14,17 @@ export class HomepageComponent implements OnInit {
   Posts: any = null;
   Categories: any = null;
 
-  Menu:any = null;
-  
-
-  constructor(private router: Router) { 
-    
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.getData(this.postsLocation)
     this.getData(this.categoriesLocation)
-    
   }
 
   getData= async (url)=>{
     await fetch(url, {mode: 'no-cors'})
     .then(response => response.json())
     .then(data=> {
-      
       if(url == this.postsLocation){
         this.Posts = data;
         this.filteredPosts = data;
@@ -42,34 +35,32 @@ export class HomepageComponent implements OnInit {
   }
 
   filter(categoryObj){
-    //this.getData(this.postsLocation)
     this.filteredPosts = []
     this.filteredPosts= this.Posts.filter(post => {
       return post.category == categoryObj.id
     })
     console.log(this.filteredPosts)
     if(this.filteredPosts.length == 0) this.filteredPosts = null
-    
   }
-
-
 
   orderAsc(){
      this.filteredPosts.sort( (a,b) =>{
       return a.createdAt - b.createdAt 
     })
   }
-  
+
   orderDesc(){
     this.filteredPosts.sort( (a,b) =>{
      return b.createdAt - a.createdAt 
    })
   }
+  
   empty(A){
     while(A.length > 0) {
       A.pop();  
     }
   }
+  
   goToArticle(p){
     this.router.navigate(["/ArticlePage", p.id])
   }
@@ -78,7 +69,6 @@ export class HomepageComponent implements OnInit {
     fetch(this.postsLocation, {mode: 'no-cors'})
     .then(response => response.json())
     .then(data=> {
- 
         this.Posts = data;
     })
     console.log(this.Posts)

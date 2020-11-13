@@ -16,13 +16,13 @@ export class ArticlepageComponent implements OnInit {
 
   constructor(public route: ActivatedRoute) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.sub = this.route.params
       .subscribe(v => {
         console.log(v)
         this.articleId = v.articleId;
       });
-      await this.getData()
+    this.getData()
     this.filter(this.articleId)
   }
 
