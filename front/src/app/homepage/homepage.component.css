@@ -1,0 +1,23 @@
+.list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5vw;
+    padding-left: 130px;
+}
+
+mat-card{
+    margin: auto;
+    margin-bottom: 5vw;
+    text-align: left;
+    min-width: min-content;
+    min-height: fit-content;
+    max-width: 22vw;
+    width:fit-content;
+    height: fit-content;
+}
+
+mat-button{
+    display: flex;
+    flex-direction: row;
+}
