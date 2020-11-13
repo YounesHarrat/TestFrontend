@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -14,19 +15,14 @@ export class HomepageComponent implements OnInit {
   Categories: any = null;
 
   Menu:any = null;
+  
 
-  constructor() { 
+  constructor(private router: Router) { 
     
   }
 
   ngOnInit(): void {
-    this.getData(this.postsLocation)
-    console.log(this.Posts)
-    this.getData(this.categoriesLocation)  
-    this.Menu = document.querySelector('#Menu')
-  }
-
-  ngAfterViewInit():void{   
+    
   }
 
   getData= async (url)=>{
@@ -49,15 +45,12 @@ export class HomepageComponent implements OnInit {
     this.filteredPosts= this.Posts.filter(post => {
       return post.category == categoryObj.id
     })
-    if(this.filteredPosts = []) this.filteredPosts = null
     console.log(this.filteredPosts)
+    if(this.filteredPosts.length == 0) this.filteredPosts = null
+    
   }
 
-  empty =(A)=>{
-    while(A.length > 0) {
-      A.pop();  
-    }
-  }
+
 
   orderAsc(){
      this.filteredPosts.sort( (a,b) =>{
@@ -70,11 +63,24 @@ export class HomepageComponent implements OnInit {
      return b.createdAt - a.createdAt 
    })
   }
-
-  zoomOut = (card) =>{
-    console.log(card)
-    
+  empty(A){
+    while(A.length > 0) {
+      A.pop();  
+    }
+  }
+  goToArticle(p){
+    this.router.navigate(["/ArticlePage", p.id])
   }
 
+  testPosts(){
+    fetch(this.postsLocation, {mode: 'no-cors'})
+    .then(response => response.json())
+    .then(data=> {
+ 
+        this.Posts = data;
+    })
+    console.log(this.Posts)
+    return this.Posts
+  }
 
 }

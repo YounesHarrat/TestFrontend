@@ -13,6 +13,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,11 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatMenuModule,
     MatSelectModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCardModule,
+    MatMenuModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

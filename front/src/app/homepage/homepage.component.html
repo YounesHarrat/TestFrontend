@@ -1,28 +1,34 @@
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 <mat-menu #menu="matMenu" id="Menu" >
   <button mat-menu-item *ngFor="let c of Categories" (click)="filter(c)">{{c.name}}</button>
+  <button mat-menu-item id="asc" (click)="orderAsc()">Order by ascending timeStamp</button>
+  <button mat-menu-item id="desc" (click)="orderDesc()">Order by descending timeStamp</button>
+  
 </mat-menu>
-<button id="asc" (click)="orderAsc()">Order by ascending timeStamp</button>
-<button id="desc" (click)="orderDesc()">Order by descending timeStamp</button>
 
 <div class="list" *ngIf="filteredPosts ; else noData">
-    <mat-card *ngFor="let p of filteredPosts ; let i = index;" routerLink="detailPage/p">
+    <mat-card *ngFor="let p of filteredPosts ; let i = index;" (click)="goToArticle(p)" >
         
         <mat-card-title><h1><b>Non de l'Article {{i}}</b></h1></mat-card-title>
-        <mat-card-subtitle>Catégorie : id_{{p.category}} {{p.name}}</mat-card-subtitle>
+        <mat-card-subtitle>ID: {{p.id}},<br>Catégorie : id_{{p.category}} {{p.name}}</mat-card-subtitle>
+        
         <mat-card-content>
-            {{p.id}}
-            {{p.message}}<hr>
+            Created at {{p.createdAt | date:'short'}} 
+        
+            {{p.message}}
         </mat-card-content>
     </mat-card>
     
     
 </div>
 
-<div class="list">
-    <ng-template #noData>
-        <mat-card>
-            <mat-card-title>No Data Available</mat-card-title>
-        </mat-card>
+<div>
+    <ng-template #noData  >
+        <div class="errorCard">
+            <mat-card>
+                <mat-card-title>No Data Available</mat-card-title>
+            </mat-card>
+        </div>
+       
     </ng-template>
 </div>

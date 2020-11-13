@@ -6,6 +6,11 @@
     padding-left: 130px;
 }
 
+
+.errorCard{
+    padding: 5vw;
+    padding-left: 130px;
+}
 mat-card{
     margin: auto;
     margin-bottom: 5vw;
@@ -17,7 +22,6 @@ mat-card{
     height: fit-content;
 }
 
-mat-button{
-    display: flex;
-    flex-direction: row;
+ng-template{
+    margin: auto;
 }
