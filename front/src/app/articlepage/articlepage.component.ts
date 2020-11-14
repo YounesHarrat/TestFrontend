@@ -12,18 +12,26 @@ export class ArticlepageComponent implements OnInit {
   sub: Subscription;
   Posts:any;
   articleId: string;
-  article =[];
+  article:any;
 
-  constructor(private router: Router,private route: ActivatedRoute) {}
+  constructor(private router: Router,private route: ActivatedRoute) {
+    this.article = [{
+      "id":null,
+      "name":null,
+      "message":null,
+    
+      "createdAt":null,
+      "category":null
+     }]
+  }
 
   async ngOnInit() {
     this.sub = this.route.params
       .subscribe(v => {
-        console.log(v)
         this.articleId = v.articleId;
       });
       await this.getData()
-    this.filter(this.articleId)
+      this.filter(this.articleId)
   }
 
   getData= async ()=>{
