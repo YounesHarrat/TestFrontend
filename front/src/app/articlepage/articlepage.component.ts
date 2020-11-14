@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators'
 @Component({
@@ -14,7 +14,7 @@ export class ArticlepageComponent implements OnInit {
   articleId: string;
   article =[];
 
-  constructor(public route: ActivatedRoute) {}
+  constructor(private router: Router,private route: ActivatedRoute) {}
 
   async ngOnInit() {
     this.sub = this.route.params
@@ -32,7 +32,7 @@ export class ArticlepageComponent implements OnInit {
     .then(data=> {
         this.Posts = data;
     })
-    .catch(error => console.error("error"))
+    .catch(error => console.error(error))
   }
 
   filter(articleId){

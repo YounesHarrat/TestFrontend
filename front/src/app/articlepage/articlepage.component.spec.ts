@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ArticlepageComponent } from './articlepage.component';
@@ -34,8 +35,20 @@ describe('ArticlepageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ArticlepageComponent);
     component = fixture.componentInstance;
+    component.article = [{
+      "id": 1,
+      "name": "quisquam",
+      "message": "Qui cupiditate eos quod veritatis vel optio provident non. Magnammolestias et quibusdam et.",
+      "createdAt": 1514880283,
+      "category": 2
+     }];
     fixture.detectChanges();
   });
+
+  it('should create the articleComponent', () => {
+    expect(component).toBeTruthy();
+  });
+
 
 
  

@@ -1,20 +1,24 @@
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<button mat-button id="asc" (click)="orderAsc()" title="Order by ascending timeStamp"><b>\<</b> </button>
+<button mat-button id="desc" (click)="orderDesc()" title="Order by descending timeStamp"> <b> \> </b> </button>
+<button mat-button id="reset" (click)="reset()" title="reset"> <i>reset</i>  </button>
+
 <mat-menu #menu="matMenu" id="Menu" >
   <button mat-menu-item *ngFor="let c of Categories" (click)="filter(c)">{{c.name}}</button>
-  <button mat-menu-item id="asc" (click)="orderAsc()">Order by ascending timeStamp</button>
-  <button mat-menu-item id="desc" (click)="orderDesc()">Order by descending timeStamp</button>
-  
+
 </mat-menu>
 
 <div class="list" *ngIf="filteredPosts ; else noData">
     <mat-card *ngFor="let p of filteredPosts ; let i = index;" (click)="goToArticle(p)" >
         
-        <mat-card-title><h1><b>Non de l'Article {{i}}</b></h1></mat-card-title>
-        <mat-card-subtitle>ID: {{p.id}},<br>Catégorie : id_{{p.category}} {{p.name}}</mat-card-subtitle>
-        
-        <mat-card-content>
+        <mat-card-title><h1><b>{{p.name}}</b></h1></mat-card-title>
+        <mat-card-subtitle>
+            Catégorie | id: {{p.category}} | name: {{p.name}}
+            <br>
             Created at {{p.createdAt | date:'short'}} 
+        </mat-card-subtitle>
         
+        <mat-card-content>           
             {{p.message}}
         </mat-card-content>
     </mat-card>

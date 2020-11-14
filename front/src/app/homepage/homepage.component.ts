@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -65,14 +66,14 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(["/ArticlePage", p.id])
   }
 
-  testPosts(){
-    fetch(this.postsLocation, {mode: 'no-cors'})
-    .then(response => response.json())
-    .then(data=> {
-        this.Posts = data;
-    })
+  async testPosts(){
+    await this.getData(this.postsLocation)
     console.log(this.Posts)
     return this.Posts
+  }
+
+  reset(){
+    this.ngOnInit()
   }
 
 }
